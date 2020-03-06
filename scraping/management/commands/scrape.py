@@ -34,4 +34,4 @@ class Command(BaseCommand):
             except:
                 print('%s already exists' % (title,))
 
-        self.stdout.write( '\n\nHeadlines Collected!' )
+        self.stdout.write( '\n\Finished Collecting Headlines!' )
