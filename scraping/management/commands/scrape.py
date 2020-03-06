@@ -44,16 +44,16 @@ class Command(BaseCommand):
             # published_date = n.published
             # published_date = datetime.strptime(n.published, "%a, %d %b %Y %I:%M:%S %z").strftime("%Y-%m-%d")
 
-            # check if url in db
-            try:
-                # save in db
-                Headline.objects.create(
-                    source=source,
-                    title=title,
-                    published_date=published_date
-                )
-                print('%s added' % (title))
-            except:
-                print('%s already exists' % (title,))
+                # check if url in db
+                try:
+                    # save in db
+                    Headline.objects.create(
+                        source=source,
+                        title=title,
+                        published_date=published_date
+                    )
+                    print('%s added' % (title))
+                except:
+                    print('%s already exists' % (title,))
 
         self.stdout.write( '\n\nFinished Collecting Headlines!' )
