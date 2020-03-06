@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Headline(models.Model):
-    source = models.Charfield(max_length=250)
+    # source = models.Charfield(max_length=250)
     title = models.CharField(max_length=250)
     published_date = models.CharField(max_length=250)
     # published_date = models.DateTimeField()
