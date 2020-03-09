@@ -31,7 +31,8 @@ class Command(BaseCommand):
             source = n.website
             for i in news:
                 title = i.title
-                published_date = i.published
+                # published_date = i.published
+                published_date = datetime.fromtimestamp(mktime(i.published_parsed))
         
 
         # get headlines
