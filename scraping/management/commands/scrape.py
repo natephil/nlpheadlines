@@ -34,7 +34,6 @@ class Command(BaseCommand):
                 title = i.title
                 # published_date = i.published
                 published_date = datetime.fromtimestamp(mktime(i.published_parsed))
-        
 
         # get headlines
         # news = nytimes.news
@@ -44,18 +43,29 @@ class Command(BaseCommand):
             # source = news.website
             # title = n.title
             # published_date = n.published
-            # published_date = datetime.strptime(n.published, "%a, %d %b %Y %I:%M:%S %z").strftime("%Y-%m-%d")
+            # published_date = datetime.fromtimestamp(mktime(i.published_parsed))
 
                 # check if url in db
+                exists = False
                 try:
-                    # save in db
-                    Headline.objects.create(
+                    exists = Headline.objects.get(
                         source=source,
                         title=title,
                         published_date=published_date
                     )
-                    print('%s added' % (title))
                 except:
-                    print('%s already exists' % (title,))
+                    pass
+                # store data in db
+                if exists == False:
+                    try:
+                        # save in db
+                        Headline.objects.create(
+                            source=source,
+                            title=title,
+                            published_date=published_date
+                        )
+                        print('%s added' % (title))
+                    except:
+                        print('%s Error storing in database' % (title,))
 
         self.stdout.write( '\n\nFinished Collecting Headlines!' )
