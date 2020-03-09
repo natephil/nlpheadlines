@@ -1,5 +1,6 @@
 from newscatcher import Newscatcher
 from datetime import datetime
+from time import mktime
 
 from django.core.management.base import BaseCommand
 
