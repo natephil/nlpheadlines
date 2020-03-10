@@ -27,45 +27,24 @@ class Command(BaseCommand):
     # define logic of command
     def handle(self, *args, **options):
 
-        for n in news_list:
-            news = n.news
-            source = n.website
-            for i in news:
-                title = i.title
-                # published_date = i.published
-                published_date = datetime.fromtimestamp(mktime(i.published_parsed))
-
         # get headlines
-        # news = nytimes.news
+        news = nytimes.news
 
         # grab all headlines
-        # for n in news:
-            # source = news.website
-            # title = n.title
-            # published_date = n.published
-            # published_date = datetime.fromtimestamp(mktime(i.published_parsed))
-
-                # check if url in db
-                exists = False
+        for n in news:
+            source = news.website
+            title = n.title
+            published_date = datetime.fromtimestamp(mktime(i.published_parsed))
+            # store data in db
                 try:
-                    exists = Headline.objects.get(
+                    # save in db
+                    Headline.objects.create(
                         source=source,
                         title=title,
                         published_date=published_date
                     )
+                    print('"%s" added to database' % (title))
                 except:
-                    pass
-                # store data in db
-                if exists == False:
-                    try:
-                        # save in db
-                        Headline.objects.create(
-                            source=source,
-                            title=title,
-                            published_date=published_date
-                        )
-                        print('"%s" added to database' % (title))
-                    except:
-                        print('"%s" Error storing duplicate value in database' % (title,))
+                    print('"%s" Error storing duplicate value in database' % (title,))
 
         self.stdout.write( '\n\nFinished Collecting Headlines!' )
