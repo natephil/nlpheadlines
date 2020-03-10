@@ -64,8 +64,8 @@ class Command(BaseCommand):
                             title=title,
                             published_date=published_date
                         )
-                        print('%s added to database' % (title))
+                        print('"%s" added to database' % (title))
                     except:
-                        print('%s Error storing duplicate value in database' % (title,))
+                        print('"%s" Error storing duplicate value in database' % (title,))
 
         self.stdout.write( '\n\nFinished Collecting Headlines!' )
